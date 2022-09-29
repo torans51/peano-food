@@ -20,22 +20,5 @@ module.exports = {
         '@typescript-eslint',
         'solid'
     ],
-    'rules': {
-        'indent': [
-            'error',
-            4
-        ],
-        'linebreak-style': [
-            'error',
-            'unix'
-        ],
-        'quotes': [
-            'error',
-            'single'
-        ],
-        'semi': [
-            'error',
-            'never'
-        ]
-    }
+    'rules': {}
 }

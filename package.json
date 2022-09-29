@@ -9,8 +9,10 @@
     "serve": "vite preview",
     "check:lint": "eslint src",
     "fix:lint": "eslint --fix src",
-    "check": "npm run check:lint",
-    "fix": "npm run fix:lint"
+    "check:format": "prettier --check 'src/**/*.{ts,tsx,json}'",
+    "fix:format": "prettier --write 'src/**/*.{ts,tsx,json}'",
+    "check": "npm run check:lint && npm run check:format",
+    "fix": "npm run fix:lint && npm run fix:format"
   },
   "license": "MIT",
   "devDependencies": {
@@ -18,6 +20,8 @@
     "@typescript-eslint/parser": "^5.38.1",
     "eslint": "^8.24.0",
     "eslint-plugin-solid": "^0.7.3",
+    "prettier": "^2.7.1",
+    "prettier-quick": "^0.0.5",
     "typescript": "^4.8.2",
     "vite": "^3.0.9",
     "vite-plugin-solid": "^2.3.0"
