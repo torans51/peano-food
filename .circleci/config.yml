@@ -12,6 +12,7 @@ jobs:
       - image: node:16.17.1-alpine3.15
     steps:
       - checkout
+      - run: npm i
       - run: npm run build
 
 
