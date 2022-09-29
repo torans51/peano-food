@@ -13,7 +13,7 @@ jobs:
     steps:
       - checkout
       - run: npm i
-      - run: npm run build
+      - run: npm run check
 
 
 # Invoke jobs via workflows
