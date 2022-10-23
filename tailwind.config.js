@@ -4,6 +4,9 @@ module.exports = {
     "./src/**/*.{ts,tsx}"
   ],
   theme: {
+    minHeight: {
+      "14": "3.5rem"
+    },
     extend: {},
   },
   plugins: [],

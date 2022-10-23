@@ -1,8 +1,8 @@
 import { createStore } from 'solid-js/store';
 
-import { formatISODate } from '../../utils/datetime';
-import { formatPrice } from '../../utils/number';
-import { Dish, DishId } from './resources';
+import { formatISODate } from 'src/utils/datetime';
+import { formatPrice } from 'src/utils/number';
+import { Dish, DishId } from 'src/pages/menu/resources';
 
 type OrderItem = {
   dishId: DishId;
@@ -26,6 +26,7 @@ const LOCAL_STORAGE_KEY = 'order';
 const isEmpty = (o: OrderStore) =>
   Object.keys(o.items).filter(dishId => o.items[dishId].count > 0).length === 0;
 
+// returns the total price in cents
 const total = (o: OrderStore) =>
   Object.keys(o.items).reduce((t, dishId) => {
     const orderItem = o.items[dishId];

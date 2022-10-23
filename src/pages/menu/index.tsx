@@ -1,11 +1,19 @@
 import { HiSolidMinusCircle, HiSolidPlusCircle } from 'solid-icons/hi';
 import { Component, createEffect, For, Show } from 'solid-js';
 
-import { formatPrice } from '../../utils/number';
-import { menu } from './resources';
-import { addDish, order, removeDish, reset, saveOrder } from './stores';
+import { classnames } from 'src/utils/classnames';
+import { formatPrice } from 'src/utils/number';
+import { menu } from 'src/pages/menu/resources';
+import {
+  addDish,
+  order,
+  removeDish,
+  reset,
+  saveOrder,
+} from 'src/pages/menu/stores';
+import { Spinner } from 'src/components';
 
-const page: Component = () => {
+const Page: Component = () => {
   createEffect(() => saveOrder(order));
 
   const copyOrder = () => {
@@ -14,43 +22,53 @@ const page: Component = () => {
 
   return (
     <div class="flex flex-col space-y-4">
-      <Show when={menu()} keyed fallback={<div>Loading ...</div>}>
-        {m => (
-          <For each={m.dishes}>
-            {dish => (
-              <div class="flex items-center space-x-2">
-                <div class="font-semibold grow">
-                  {dish.name}
-                  <p>{formatPrice(dish.price / 100)}</p>
+      <div class="min-h-14">
+        <Show when={menu()} keyed fallback={<Spinner />}>
+          {m => (
+            <For each={m.dishes}>
+              {dish => (
+                <div class="flex items-center space-x-2">
+                  <div class="font-semibold grow">
+                    {dish.name}
+                    <p>{formatPrice(dish.price / 100)}</p>
+                  </div>
+                  <div>{order.items[dish.id]?.count ?? ''}</div>
+                  <div class="flex items-center space-x-1">
+                    <HiSolidPlusCircle
+                      size={24}
+                      class="text-red-500 cursor-pointer"
+                      onClick={() => addDish(dish)}
+                    />
+                    <HiSolidMinusCircle
+                      size={24}
+                      class="text-red-500 cursor-pointer"
+                      onClick={() => removeDish(dish)}
+                    />
+                  </div>
                 </div>
-                <div>{order.items[dish.id]?.count ?? ''}</div>
-                <div class="flex items-center space-x-1">
-                  <HiSolidPlusCircle
-                    size={24}
-                    class="text-red-500 cursor-pointer"
-                    onClick={() => addDish(dish)}
-                  />
-                  <HiSolidMinusCircle
-                    size={24}
-                    class="text-red-500 cursor-pointer"
-                    onClick={() => removeDish(dish)}
-                  />
-                </div>
-              </div>
-            )}
-          </For>
-        )}
-      </Show>
+              )}
+            </For>
+          )}
+        </Show>
+      </div>
 
       <button
-        class="block p-2 rounded-md bg-red-500 text-white font-semibold"
+        class={classnames(
+          !menu.loading ? 'hover:bg-white hover:text-red-500 hover' : '',
+          'p-2 rounded-md bg-red-500 text-white font-semibold border-2 border-red-500'
+        )}
+        disabled={menu.loading}
         onClick={() => copyOrder()}
       >
         Copia ordine
       </button>
 
       <button
-        class="block p-2 rounded-md bg-gray-200 font-semibold"
+        class={classnames(
+          !menu.loading ? 'hover:bg-gray-300' : '',
+          'p-2 rounded-md bg-gray-200 font-semibold'
+        )}
+        disabled={menu.loading}
         onClick={() => reset()}
       >
         Cancella ordine
@@ -63,4 +81,4 @@ const page: Component = () => {
   );
 };
 
-export default page;
+export default Page;

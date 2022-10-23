@@ -5,7 +5,7 @@ export type DishId = number | string;
 export type Dish = {
   id: DishId;
   name: string;
-  price: number;
+  price: number; // in cents
 };
 
 export type Menu = {
