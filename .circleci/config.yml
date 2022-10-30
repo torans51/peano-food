@@ -10,6 +10,7 @@ jobs:
   build:
     docker:
       - image: node:16.17.1-alpine3.15
+    resource_class: small
     steps:
       - checkout
       - run: npm i
