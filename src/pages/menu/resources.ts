@@ -13,12 +13,19 @@ export type Menu = {
 };
 
 const fetchMenu = async (): Promise<Menu> => {
-  return {
+  const result = {
     dishes: [
-      { id: 1, name: 'Schiacciatina con mortadella', price: 350 },
-      { id: 2, name: 'Schiacciatina con prosciutto crudo', price: 350 },
+      { id: 1, name: 'Pizza with pepperoni', price: 350 },
+      { id: 2, name: 'Pizza with cheese', price: 350 },
     ],
   };
+
+  // Simulate async fetch
+  return new Promise(res => {
+    setTimeout(() => {
+      res(result);
+    }, 2000);
+  });
 };
 
 export const [menu] = createResource(fetchMenu);
