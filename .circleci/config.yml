@@ -7,7 +7,7 @@ orbs:
   node: circleci/node@4.7
 
 jobs:
-  build:
+  check:
     docker:
       - image: node:16.17.1-alpine3.15
     resource_class: small
@@ -23,4 +23,4 @@ workflows:
   netlify-deploy: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
-      - build
+      - check

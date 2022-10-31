@@ -1,7 +1,6 @@
 import { HiSolidMinusCircle, HiSolidPlusCircle } from 'solid-icons/hi';
 import { Component, createEffect, For, Show } from 'solid-js';
 
-import { classnames } from 'src/utils/classnames';
 import { formatPrice } from 'src/utils/number';
 import { Dish, DishId, menu } from 'src/pages/menu/resources';
 import {
@@ -11,7 +10,7 @@ import {
   reset,
   saveOrder,
 } from 'src/pages/menu/stores';
-import { Spinner } from 'src/components';
+import { Spinner, PrimaryBtn, CancelBtn } from 'src/components';
 
 const DishWrapper: Component<{ dish: Dish }> = props => {
   const dishCount = (dishId: DishId) => order.items[dishId]?.count ?? 0;
@@ -39,44 +38,6 @@ const DishWrapper: Component<{ dish: Dish }> = props => {
   );
 };
 
-const PrimaryButton: Component<{
-  text: string;
-  onClick: () => void;
-  disabled: boolean;
-}> = props => {
-  return (
-    <button
-      class={classnames(
-        !props.disabled ? 'hover:bg-white hover:text-red-500 hover' : '',
-        'p-2 rounded-md bg-red-500 text-white font-semibold border-2 border-red-500'
-      )}
-      disabled={props.disabled}
-      onClick={() => props.onClick()}
-    >
-      Copy order
-    </button>
-  );
-};
-
-const CancelButton: Component<{
-  text: string;
-  onClick: () => void;
-  disabled: boolean;
-}> = props => {
-  return (
-    <button
-      class={classnames(
-        !props.disabled ? 'hover:bg-gray-300' : '',
-        'p-2 rounded-md bg-gray-200 font-semibold'
-      )}
-      disabled={props.disabled}
-      onClick={() => props.onClick()}
-    >
-      {props.text}
-    </button>
-  );
-};
-
 const Page: Component = () => {
   createEffect(() => saveOrder(order));
 
@@ -94,13 +55,13 @@ const Page: Component = () => {
         </Show>
       </div>
 
-      <PrimaryButton
+      <PrimaryBtn
         text={'Copy order'}
         onClick={copyOrder}
         disabled={menu.loading}
       />
 
-      <CancelButton
+      <CancelBtn
         text={'Delete order'}
         onClick={reset}
         disabled={menu.loading}
