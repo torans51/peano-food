@@ -1,16 +1,6 @@
 import { createResource } from 'solid-js';
 
-export type DishId = number | string;
-
-export type Dish = {
-  id: DishId;
-  name: string;
-  price: number; // in cents
-};
-
-export type Menu = {
-  dishes: Dish[];
-};
+import { Menu } from 'src/order/types';
 
 const fetchMenu = async (): Promise<Menu> => {
   const result = {
