@@ -75,7 +75,7 @@ export const Provider: ParentComponent = props => {
       .filter(([, item]) => item.count > 0)
       .map(([, item]) => {
         const { count, dish } = item;
-        const partialPrice = formatPrice((count * dish.price) / 100);
+        const partialPrice = formatPrice(count * dish.price);
         return `${dish.name} (x${count})\n\t${partialPrice}`;
       })
       .join('\n------------------\n');
@@ -87,7 +87,7 @@ export const Provider: ParentComponent = props => {
             '===========',
             items,
             '===========',
-            `Total: ${formatPrice(total() / 100)}`,
+            `Total: ${formatPrice(total())}`,
           ].join('\n')
         : '';
 
