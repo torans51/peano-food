@@ -24,9 +24,9 @@ const Page: Component = () => {
                         {formatPrice(dish.price)}
                       </div>
                     </div>
-                    <div class="w-1/3 flex items-center justify-end space-x-2">
+                    <div class="w-1/3 flex items-center justify-end space-x-4">
                       <HiOutlineMinus
-                        size={20}
+                        size={22}
                         class="text-blue-400 cursor-pointer [&>path]:stroke-[2]"
                         onClick={() => removeDishToOrder(dish)}
                       />
@@ -34,7 +34,7 @@ const Page: Component = () => {
                         {getOrderItem(dish.id)?.count ?? 0}
                       </p>
                       <HiOutlinePlus
-                        size={20}
+                        size={22}
                         class="text-purple-400 cursor-pointer [&>path]:stroke-[2]"
                         onClick={() => addDishToOrder(dish)}
                       />
