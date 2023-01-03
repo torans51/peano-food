@@ -3,5 +3,5 @@ export const formatPrice = (price: number, cents = true) => {
   return `${p.toLocaleString(undefined, {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  })}€`;
+  })} €`;
 };

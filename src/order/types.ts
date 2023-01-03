@@ -26,5 +26,6 @@ export type Order = {
 export type OrderStore = Order & {
   isEmpty: Accessor<boolean>;
   total: Accessor<number>;
+  totalItems: Accessor<number>;
   prettify: Accessor<string>;
 };

@@ -2,19 +2,25 @@ import { Component } from 'solid-js';
 import { Toaster } from 'solid-toast';
 
 import { OrderProvider } from 'src/order';
-import { MenuPage } from 'src/pages';
+import { CartPage, MenuPage } from 'src/pages';
 import { Header, Footer } from 'src/components';
+import { Route, Routes } from '@solidjs/router';
 
 const App: Component = () => {
   return (
     <OrderProvider>
       <div class="h-screen flex justify-center">
-        <div class="flex-1 h-full max-w-md bg-neutral-50 flex flex-col">
+        <div class="flex-1 h-full w-full bg-neutral-50 flex flex-col">
           <Header />
-          <div class="flex-1 overflow-y-auto">
-            <MenuPage />
+          <div class="flex-1 overflow-y-auto mb-12">
+            <Routes>
+              <Route path="/cart" component={CartPage} />
+              <Route path="/" component={MenuPage} />
+            </Routes>
           </div>
-          <Footer />
+          <div class="fixed w-full bottom-0">
+            <Footer />
+          </div>
         </div>
         <Toaster
           position="bottom-center"

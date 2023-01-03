@@ -25,6 +25,7 @@ export type ContextModel = {
   order: OrderStore;
   resetOrder: () => void;
   getOrderItem: (dishId: DishId) => OrderItem | null;
+  getOrderItemTotal: (dishId: DishId) => number | null;
   addDishToOrder: (dish: Dish) => void;
   removeDishToOrder: (dish: Dish) => void;
 };
@@ -70,6 +71,12 @@ export const Provider: ParentComponent = props => {
     }, 0)
   );
 
+  const totalItems = createMemo(() =>
+    Object.entries(state.items).reduce((tot, [, item]) => {
+      return tot + item.count;
+    }, 0)
+  );
+
   const prettify = createMemo(() => {
     const items = Object.entries(state.items)
       .filter(([, item]) => item.count > 0)
@@ -98,6 +105,13 @@ export const Provider: ParentComponent = props => {
 
   const getOrderItem = (id: DishId) => state.items[id] ?? null;
 
+  const getOrderItemTotal = (id: DishId) => {
+    const item = getOrderItem(id);
+    if (!item) return null;
+
+    return item.count * item.dish.price;
+  };
+
   const addDishToOrder = (dish: Dish) => {
     if (!state.items[dish.id]) {
       setState('items', dish.id, { dishId: dish.id, count: 1, dish });
@@ -121,19 +135,14 @@ export const Provider: ParentComponent = props => {
     }));
   };
 
-  const order = mergeProps(state, { isEmpty, total, prettify });
+  const order = mergeProps(state, { isEmpty, total, totalItems, prettify });
 
   const value: ContextModel = {
-    // menu: {
-    //   dishes: [
-    //     { id: 1, name: 'Pizza with pepperoni', price: 350 },
-    //     { id: 2, name: 'Pizza with cheese', price: 350 },
-    //   ],
-    // },
     menu,
     order,
     resetOrder,
     getOrderItem,
+    getOrderItemTotal,
     addDishToOrder,
     removeDishToOrder,
   };
