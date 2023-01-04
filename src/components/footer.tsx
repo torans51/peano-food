@@ -18,19 +18,19 @@ const Footer: Component = () => {
     <div class="bg-white flex space-x-2 p-2">
       <Switch>
         <Match when={location.pathname === '/cart'}>
-          <BackButton />
-          <CopyCartButton />
+          <BackBtn />
+          <CopyCartBtn />
         </Match>
         <Match when={location.pathname === '/'}>
-          <ResetButton />
-          <CartButton />
+          <ResetBtn />
+          <CartBtn />
         </Match>
       </Switch>
     </div>
   );
 };
 
-const ResetButton: Component = () => {
+const ResetBtn: Component = () => {
   const { resetOrder } = useContext(OrderContext);
 
   return (
@@ -43,7 +43,7 @@ const ResetButton: Component = () => {
   );
 };
 
-const BackButton: Component = () => {
+const BackBtn: Component = () => {
   const navigate = useNavigate();
 
   return (
@@ -56,14 +56,14 @@ const BackButton: Component = () => {
   );
 };
 
-const CartButton: Component = () => {
+const CartBtn: Component = () => {
   const navigate = useNavigate();
 
   const { order } = useContext(OrderContext);
 
   return (
     <button
-      class="flex-1 rounded-md border bg-gradient-to-br from-blue-400 to-purple-400 flex justify-center items-center space-x-2"
+      class="flex-1 rounded-md border app-gradient flex justify-center items-center space-x-2"
       onClick={() => navigate('/cart')}
     >
       <HiOutlineShoppingCart size={22} class="text-white" />
@@ -74,7 +74,7 @@ const CartButton: Component = () => {
   );
 };
 
-const CopyCartButton: Component = () => {
+const CopyCartBtn: Component = () => {
   const { order } = useContext(OrderContext);
 
   const copyOrder = (order: OrderStore) => {
@@ -84,7 +84,7 @@ const CopyCartButton: Component = () => {
 
   return (
     <button
-      class="flex-1 rounded-md border bg-gradient-to-br from-blue-400 to-purple-400 flex justify-center items-center space-x-2"
+      class="flex-1 rounded-md border app-gradient flex justify-center items-center space-x-2"
       onClick={() => copyOrder(order)}
     >
       <p class="text-white">{formatPrice(order.total())}</p>

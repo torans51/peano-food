@@ -17,7 +17,7 @@ const AddDishBtn: Component<Props> = props => {
     >
       <HiOutlinePlus
         size={22}
-        class="text-purple-400 cursor-pointer [&>path]:stroke-[2]"
+        class="text-primary2 cursor-pointer [&>path]:stroke-[2]"
       />
     </button>
   );

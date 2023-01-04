@@ -17,7 +17,7 @@ const RemoveDishBtn: Component<Props> = props => {
     >
       <HiOutlineMinus
         size={22}
-        class="text-blue-400 cursor-pointer [&>path]:stroke-[2]"
+        class="text-primary1 cursor-pointer [&>path]:stroke-[2]"
       />
     </button>
   );
