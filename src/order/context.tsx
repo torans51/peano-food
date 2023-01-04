@@ -30,7 +30,8 @@ export type ContextModel = {
   removeDishToOrder: (dish: Dish) => void;
 };
 
-export const Context = createContext<ContextModel>();
+// Force Context to be defined otherwise I have to check if defined in every component
+export const Context = createContext<ContextModel>({} as ContextModel);
 
 const initState = (): Order => ({
   date: formatISODate(new Date(), 'date'),
