@@ -19,6 +19,8 @@ import {
 import { menu } from 'src/order/resources';
 import { formatISODate } from 'src/utils/datetime';
 import { formatPrice } from 'src/utils/number';
+import { useI18n } from '@solid-primitives/i18n';
+import { capitalize } from 'src/utils/string';
 
 export type ContextModel = {
   menu: Resource<Menu>;
@@ -56,6 +58,8 @@ const save = (state: Order) =>
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
 
 export const Provider: ParentComponent = props => {
+  const [t] = useI18n();
+
   const [state, setState] = createStore<Order>(fetch());
 
   createEffect(() => save(state));
@@ -91,11 +95,11 @@ export const Provider: ParentComponent = props => {
     const result =
       items.length > 0
         ? [
-            'Order',
+            `${capitalize(t('order'))}`,
             '===========',
             items,
             '===========',
-            `Total: ${formatPrice(total())}`,
+            `${capitalize(t('total'))}: ${formatPrice(total())}`,
           ].join('\n')
         : '';
 

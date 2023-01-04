@@ -5,3 +5,15 @@
 .app-gradient {
   @apply bg-gradient-to-br from-primary1 to-primary2; 
 }
+
+.btn {
+  @apply border py-1.5 rounded-md flex justify-center items-center space-x-2 ;
+}
+
+.btn-default {
+  @apply border-neutral-600;
+}
+
+.btn-primary {
+  @apply app-gradient border-t-primary1 border-l-primary1 border-b-primary2 border-r-primary2;
+}

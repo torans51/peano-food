@@ -1,3 +1,4 @@
+import { useI18n } from '@solid-primitives/i18n';
 import { useLocation, useNavigate } from '@solidjs/router';
 import {
   HiOutlineArrowSmLeft,
@@ -10,6 +11,7 @@ import { toast } from 'solid-toast';
 
 import { OrderContext, OrderStore } from 'src/order';
 import { formatPrice } from 'src/utils/number';
+import { capitalize } from 'src/utils/string';
 
 const Footer: Component = () => {
   const location = useLocation();
@@ -34,10 +36,7 @@ const ResetBtn: Component = () => {
   const { resetOrder } = useContext(OrderContext);
 
   return (
-    <button
-      class="flex-1 rounded-md border border-neutral-600 flex justify-center items-center py-1.5"
-      onClick={resetOrder}
-    >
+    <button class="flex-1 btn btn-default" onClick={resetOrder}>
       <HiOutlineTrash size={22} class="text-neutral-600" />
     </button>
   );
@@ -47,10 +46,7 @@ const BackBtn: Component = () => {
   const navigate = useNavigate();
 
   return (
-    <button
-      class="flex-1 rounded-md border border-neutral-600 flex justify-center items-center py-1.5"
-      onClick={() => navigate('/')}
-    >
+    <button class="flex-1 btn btn-default" onClick={() => navigate('/')}>
       <HiOutlineArrowSmLeft size={22} class="text-neutral-600" />
     </button>
   );
@@ -62,10 +58,7 @@ const CartBtn: Component = () => {
   const { order } = useContext(OrderContext);
 
   return (
-    <button
-      class="flex-1 rounded-md border app-gradient flex justify-center items-center space-x-2"
-      onClick={() => navigate('/cart')}
-    >
+    <button class="flex-1 btn btn-primary" onClick={() => navigate('/cart')}>
       <HiOutlineShoppingCart size={22} class="text-white" />
       <Show when={order.totalItems() > 0}>
         <p class="text-white">{order.totalItems}</p>
@@ -75,18 +68,17 @@ const CartBtn: Component = () => {
 };
 
 const CopyCartBtn: Component = () => {
+  const [t] = useI18n();
+
   const { order } = useContext(OrderContext);
 
   const copyOrder = (order: OrderStore) => {
     navigator.clipboard.writeText(order.prettify() ?? '');
-    toast('Ordine copiato');
+    toast(capitalize(t('order_copied')));
   };
 
   return (
-    <button
-      class="flex-1 rounded-md border app-gradient flex justify-center items-center space-x-2"
-      onClick={() => copyOrder(order)}
-    >
+    <button class="flex-1 btn btn-primary" onClick={() => copyOrder(order)}>
       <p class="text-white">{formatPrice(order.total())}</p>
       <HiOutlineClipboardCopy size={22} class="text-white" />
     </button>
