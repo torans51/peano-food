@@ -1,14 +1,14 @@
 import { HiOutlineMinus } from 'solid-icons/hi';
-import { Component, useContext } from 'solid-js';
+import { Component } from 'solid-js';
 
-import { Dish, OrderContext } from 'src/order';
+import { Dish, useOrderContext } from 'src/order';
 
 type Props = {
   dish: Dish;
 };
 
 const RemoveDishBtn: Component<Props> = props => {
-  const { removeDishToOrder } = useContext(OrderContext);
+  const { removeDishToOrder } = useOrderContext();
 
   return (
     <button

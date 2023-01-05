@@ -1,15 +1,15 @@
 import { useI18n } from '@solid-primitives/i18n';
-import { Component, createMemo, For, Show, useContext } from 'solid-js';
+import { Component, createMemo, For, Show } from 'solid-js';
 import { DishCard } from 'src/components';
 
-import { OrderContext } from 'src/order';
+import { useOrderContext } from 'src/order';
 import { formatPrice } from 'src/utils/number';
 import { capitalize } from 'src/utils/string';
 
 const Page: Component = () => {
   const [t] = useI18n();
 
-  const { menu, order, getOrderItem } = useContext(OrderContext);
+  const { menu, order, getOrderItem } = useOrderContext();
 
   const orderItemsFromMenu = createMemo(() => {
     const m = menu();

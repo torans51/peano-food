@@ -1,5 +1,5 @@
-import { Component, Show, useContext } from 'solid-js';
-import { Dish, OrderContext } from 'src/order';
+import { Component, Show } from 'solid-js';
+import { Dish, useOrderContext } from 'src/order';
 
 import { formatPrice } from 'src/utils/number';
 import { AddDishBtn, RemoveDishBtn } from 'src/components';
@@ -10,7 +10,7 @@ type Props = {
 };
 
 const DishCard: Component<Props> = props => {
-  const { getOrderItem, getOrderItemTotal } = useContext(OrderContext);
+  const { getOrderItem, getOrderItemTotal } = useOrderContext();
 
   return (
     <div class="bg-white rounded-md shadow-lg px-2 py-3 flex flex-col space-y-2">

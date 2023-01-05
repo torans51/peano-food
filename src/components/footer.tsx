@@ -6,10 +6,10 @@ import {
   HiOutlineShoppingCart,
   HiOutlineTrash,
 } from 'solid-icons/hi';
-import { Component, Match, Show, Switch, useContext } from 'solid-js';
+import { Component, Match, Show, Switch } from 'solid-js';
 import { toast } from 'solid-toast';
 
-import { OrderContext, OrderStore } from 'src/order';
+import { OrderStore, useOrderContext } from 'src/order';
 import { formatPrice } from 'src/utils/number';
 import { capitalize } from 'src/utils/string';
 
@@ -33,7 +33,7 @@ const Footer: Component = () => {
 };
 
 const ResetBtn: Component = () => {
-  const { resetOrder } = useContext(OrderContext);
+  const { resetOrder } = useOrderContext();
 
   return (
     <button class="flex-1 btn btn-default" onClick={resetOrder}>
@@ -55,7 +55,7 @@ const BackBtn: Component = () => {
 const CartBtn: Component = () => {
   const navigate = useNavigate();
 
-  const { order } = useContext(OrderContext);
+  const { order } = useOrderContext();
 
   return (
     <button class="flex-1 btn btn-primary" onClick={() => navigate('/cart')}>
@@ -70,7 +70,7 @@ const CartBtn: Component = () => {
 const CopyCartBtn: Component = () => {
   const [t] = useI18n();
 
-  const { order } = useContext(OrderContext);
+  const { order } = useOrderContext();
 
   const copyOrder = (order: OrderStore) => {
     navigator.clipboard.writeText(order.prettify() ?? '');

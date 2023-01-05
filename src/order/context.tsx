@@ -5,6 +5,7 @@ import {
   mergeProps,
   ParentComponent,
   Resource,
+  useContext,
 } from 'solid-js';
 import { createStore } from 'solid-js/store';
 
@@ -22,7 +23,7 @@ import { formatPrice } from 'src/utils/number';
 import { useI18n } from '@solid-primitives/i18n';
 import { capitalize } from 'src/utils/string';
 
-export type ContextModel = {
+export type CtxModel = {
   menu: Resource<Menu>;
   order: OrderStore;
   resetOrder: () => void;
@@ -33,7 +34,9 @@ export type ContextModel = {
 };
 
 // Force Context to be defined otherwise I have to check if defined in every component
-export const Context = createContext<ContextModel>({} as ContextModel);
+export const Ctx = createContext<CtxModel>({} as CtxModel);
+
+export const useCtx = () => useContext(Ctx);
 
 const initState = (): Order => ({
   date: formatISODate(new Date(), 'date'),
@@ -142,7 +145,7 @@ export const Provider: ParentComponent = props => {
 
   const order = mergeProps(state, { isEmpty, total, totalItems, prettify });
 
-  const value: ContextModel = {
+  const value: CtxModel = {
     menu,
     order,
     resetOrder,
@@ -152,5 +155,5 @@ export const Provider: ParentComponent = props => {
     removeDishToOrder,
   };
 
-  return <Context.Provider value={value}>{props.children}</Context.Provider>;
+  return <Ctx.Provider value={value}>{props.children}</Ctx.Provider>;
 };

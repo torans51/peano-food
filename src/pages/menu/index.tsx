@@ -1,10 +1,10 @@
-import { Component, For, Show, useContext } from 'solid-js';
+import { Component, For, Show } from 'solid-js';
 
-import { OrderContext } from 'src/order';
+import { useOrderContext } from 'src/order';
 import { DishCard } from 'src/components';
 
 const Page: Component = () => {
-  const { menu } = useContext(OrderContext);
+  const { menu } = useOrderContext();
 
   return (
     <div class="px-2 py-3 flex flex-col space-y-3">

@@ -1,6 +1,7 @@
-export type { ContextModel as OrderContextModel } from 'src/order/context';
+export type { CtxModel as OrderContextModel } from 'src/order/context';
 export {
-  Context as OrderContext,
+  useCtx as useOrderContext,
+  Ctx as OrderContext,
   Provider as OrderProvider,
 } from 'src/order/context';
 export * from 'src/order/types';
