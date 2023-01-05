@@ -11,10 +11,10 @@ const App: Component = () => {
   return (
     <I18NProvider>
       <OrderProvider>
-        <div class="h-screen flex justify-center">
-          <div class="flex-1 h-full w-full bg-neutral-50 flex flex-col">
+        <div class="h-screen">
+          <div class="h-full w-full bg-neutral-50 flex flex-col">
             <Header />
-            <div class="flex-1 overflow-y-auto mb-12">
+            <div class="flex-1 overflow-hidden mb-12">
               <Routes>
                 <Route path="/cart" component={CartPage} />
                 <Route path="/" component={MenuPage} />
@@ -29,8 +29,7 @@ const App: Component = () => {
             containerClassName="mb-12"
             toastOptions={{
               duration: 1000,
-              className:
-                'border border-t-primary1 border-l-primary1 border-b-primary2 border-r-primary2',
+              className: 'app-border-gradient',
             }}
           />
         </div>

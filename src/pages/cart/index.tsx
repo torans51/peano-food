@@ -17,7 +17,7 @@ const Page: Component = () => {
   });
 
   return (
-    <div class="px-2 py-3 flex flex-col space-y-3">
+    <div class="h-full overflow-y-auto px-2 py-3 flex flex-col space-y-3">
       <Show when={order.totalItems() > 0} fallback={<EmptyOrder />}>
         <p class="px-2 font-semibold text-lg text-right text-neutral-600">
           {`${capitalize(t('total'))}: ${formatPrice(order.total())}`}
