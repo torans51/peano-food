@@ -1,4 +1,5 @@
 import {
+  Accessor,
   createContext,
   createEffect,
   createMemo,
@@ -16,8 +17,9 @@ import {
   Order,
   OrderItem,
   OrderStore,
+  DishCategory,
 } from 'src/order/types';
-import { menu } from 'src/order/resources';
+import { menu, sortCategories, sortDishes } from 'src/order/resources';
 import { formatISODate } from 'src/utils/datetime';
 import { formatPrice } from 'src/utils/number';
 import { useI18n } from '@solid-primitives/i18n';
@@ -25,6 +27,9 @@ import { capitalize } from 'src/utils/string';
 
 export type CtxModel = {
   menu: Resource<Menu>;
+  categories: Accessor<DishCategory[]>;
+  dishByCategory: (category: DishCategory) => Dish[];
+  sortDishes: (dishes: Dish[]) => Dish[];
   order: OrderStore;
   resetOrder: () => void;
   getOrderItem: (dishId: DishId) => OrderItem | null;
@@ -66,6 +71,21 @@ export const Provider: ParentComponent = props => {
   const [state, setState] = createStore<Order>(fetch());
 
   createEffect(() => save(state));
+
+  const categories = createMemo(() => {
+    const dishes = menu()?.dishes ?? [];
+    const categoriesMap = dishes.reduce((acc, d) => {
+      acc.set(d.category.code, d.category);
+      return acc;
+    }, new Map<string, DishCategory>());
+
+    return sortCategories(Array.from(categoriesMap.values()));
+  });
+
+  const dishByCategory = (category: DishCategory) => {
+    const dishes = menu()?.dishes ?? [];
+    return sortDishes(dishes.filter(d => d.category.code === category.code));
+  };
 
   const isEmpty = createMemo(
     () =>
@@ -147,6 +167,9 @@ export const Provider: ParentComponent = props => {
 
   const value: CtxModel = {
     menu,
+    categories,
+    dishByCategory,
+    sortDishes,
     order,
     resetOrder,
     getOrderItem,

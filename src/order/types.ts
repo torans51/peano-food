@@ -2,8 +2,14 @@ import { Accessor } from 'solid-js';
 
 export type DishId = number | string;
 
+export type DishCategory = {
+  code: string;
+  position: number;
+};
+
 export type Dish = {
   id: DishId;
+  category: DishCategory;
   name: string;
   price: number; // in cents
 };

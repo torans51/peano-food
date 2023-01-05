@@ -9,11 +9,11 @@ import { capitalize } from 'src/utils/string';
 const Page: Component = () => {
   const [t] = useI18n();
 
-  const { menu, order, getOrderItem } = useOrderContext();
+  const { menu, sortDishes, order, getOrderItem } = useOrderContext();
 
   const orderItemsFromMenu = createMemo(() => {
-    const m = menu();
-    return m ? m.dishes.filter(d => getOrderItem(d.id)?.count ?? 0 > 0) : [];
+    const dishes = menu()?.dishes ?? [];
+    return sortDishes(dishes.filter(d => getOrderItem(d.id)?.count ?? 0 > 0));
   });
 
   return (

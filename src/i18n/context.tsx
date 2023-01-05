@@ -5,6 +5,8 @@ const dict = {
   it: {
     order: 'ordine',
     menu: 'menu',
+    pizzas: 'pizze',
+    beverages: 'bevande',
     total: 'totale',
     order_copied: 'ordine copiato',
     empty_order:
