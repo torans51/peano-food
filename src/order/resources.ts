@@ -251,6 +251,12 @@ const fetchMenu = async (): Promise<Menu> => {
         name: 'Succhi di frutta',
         price: 200,
       },
+      {
+        id: 42,
+        category: { code: 'beverages', position: 3 },
+        name: 'Cappuccino',
+        price: 120,
+      },
     ],
   };
 

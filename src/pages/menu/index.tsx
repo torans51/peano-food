@@ -9,7 +9,7 @@ const Page: Component = () => {
 
   return (
     <div class="h-full py-3 flex flex-col space-y-2">
-      <div class="overflow-x-auto w-max px-2 flex space-x-2 items-center justify-start">
+      <div class="overflow-x-auto px-2 flex space-x-2 items-center justify-start whitespace-nowrap">
         <CategoriesScrollable categories={categories()} />
       </div>
       <div class="overflow-y-auto px-2 flex-1 flex flex-col space-y-4">

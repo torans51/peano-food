@@ -11,18 +11,16 @@ const App: Component = () => {
   return (
     <I18NProvider>
       <OrderProvider>
-        <div class="h-screen">
-          <div class="h-full w-full bg-neutral-50 flex flex-col">
+        <div class="h-screen w-screen">
+          <div class="h-full bg-neutral-50 flex flex-col">
             <Header />
-            <div class="flex-1 overflow-hidden mb-12">
+            <div class="flex-1 overflow-hidden">
               <Routes>
                 <Route path="/cart" component={CartPage} />
                 <Route path="/" component={MenuPage} />
               </Routes>
             </div>
-            <div class="fixed w-full bottom-0">
-              <Footer />
-            </div>
+            <Footer />
           </div>
           <Toaster
             position="bottom-center"
