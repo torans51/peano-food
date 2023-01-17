@@ -14,13 +14,15 @@ const App: Component = () => {
         <div class="h-screen w-screen">
           <div class="h-full bg-neutral-50 flex flex-col">
             <Header />
-            <div class="flex-1 overflow-hidden">
+            <div class="flex-1 overflow-hidden mb-12">
               <Routes>
                 <Route path="/cart" component={CartPage} />
                 <Route path="/" component={MenuPage} />
               </Routes>
             </div>
-            <Footer />
+            <div class="fixed left-0 right-0 bottom-0">
+              <Footer />
+            </div>
           </div>
           <Toaster
             position="bottom-center"
