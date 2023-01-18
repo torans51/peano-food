@@ -61,7 +61,7 @@ const CartBtn: Component = () => {
     <button class="flex-1 btn btn-primary" onClick={() => navigate('/cart')}>
       <HiOutlineShoppingCart size={22} class="stroke-white" />
       <Show when={order.totalItems() > 0}>
-        <p class="text-white">{order.totalItems}</p>
+        <p class="font-semibold text-white">{order.totalItems}</p>
       </Show>
     </button>
   );
@@ -79,7 +79,7 @@ const CopyCartBtn: Component = () => {
 
   return (
     <button class="flex-1 btn btn-primary" onClick={() => copyOrder(order)}>
-      <p class="text-white">{formatPrice(order.total())}</p>
+      <p class="font-semibold text-white">{formatPrice(order.total())}</p>
       <HiOutlineClipboardCopy size={22} class="stroke-white" />
     </button>
   );

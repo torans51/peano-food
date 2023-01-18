@@ -17,9 +17,7 @@ const DishCard: Component<Props> = props => {
       <div class="flex">
         <div class="w-2/3">
           <div class="font-semibold text-neutral-600">{props.dish.name}</div>
-          <div class="text-neutral-400 text-sm">
-            {formatPrice(props.dish.price)}
-          </div>
+          <div class="text-neutral-400">{formatPrice(props.dish.price)}</div>
         </div>
         <div class="w-1/3 flex items-center justify-end space-x-2">
           <RemoveDishBtn dish={props.dish} />

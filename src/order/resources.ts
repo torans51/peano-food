@@ -35,7 +35,7 @@ const dishes = [
   { category: CAT_SNACKS, name: 'Tuc sfoglie', price: 150 },
   { category: CAT_SNACKS, name: 'Tuc crackers integrali', price: 150 },
   { category: CAT_SNACKS, name: 'Ritz', price: 150 },
-  { category: CAT_SNACKS, name: 'Cornetti', price: 120 },
+  // { category: CAT_SNACKS, name: 'Cornetti', price: 120 },
   { category: CAT_SNACKS, name: 'Nutellini', price: 150 },
   { category: CAT_SNACKS, name: 'Kinder cereali', price: 120 },
   { category: CAT_SNACKS, name: 'Kinder delice', price: 120 },
@@ -75,13 +75,13 @@ const dishes = [
   { category: CAT_CAFETTERIA, name: 'Orzo', price: 120 },
   { category: CAT_CAFETTERIA, name: 'Cioccolata calda', price: 150 },
   { category: CAT_CAFETTERIA, name: 'Thè caldo bustine', price: 150 },
-  { category: CAT_CAFETTERIA, name: 'Succhi di frutta', price: 200 },
+  // { category: CAT_CAFETTERIA, name: 'Succhi di frutta', price: 200 },
   { category: CAT_CAFETTERIA, name: 'Cornetti', price: 120 },
 ];
 
 const fetchMenu = async (): Promise<Menu> => {
   const result = {
-    dishes: dishes.map((v, i) => ({ ...v, id: i + 1 })),
+    dishes: dishes.map(d => ({ ...d, id: d.name })),
   };
 
   // Simulate async fetch

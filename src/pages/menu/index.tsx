@@ -9,7 +9,7 @@ const Page: Component = () => {
 
   return (
     <div class="h-full py-3 flex flex-col space-y-2">
-      <div class="overflow-x-auto px-2 flex space-x-2 items-center justify-start whitespace-nowrap">
+      <div class="overflow-x-auto px-2 pb-3 flex space-x-2 items-center justify-start whitespace-nowrap">
         <CategoriesScrollable categories={categories()} />
       </div>
       <div class="overflow-y-auto px-2 flex-1 flex flex-col space-y-4">
@@ -34,7 +34,7 @@ const CategoriesScrollable: Component<{
     <For each={props.categories}>
       {category => (
         <button
-          class="my-2 capitalize text-neutral-600 px-2 rounded-xl app-border-gradient"
+          class="capitalize text-neutral-600 px-2 rounded-xl app-border-gradient"
           onClick={() => scrollToCategory(category)}
         >
           {t(category.code)}
@@ -53,7 +53,7 @@ const Categories: Component<{ categories: DishCategory[] }> = props => {
     <For each={props.categories}>
       {category => (
         <div id={category.code}>
-          <p class="capitalize font-semibold text-neutral-600 text-lg">
+          <p class="capitalize font-semibold text-neutral-600 text-xl">
             {t(category.code)}
           </p>
           <div class="flex flex-col space-y-3">
