@@ -7,8 +7,8 @@ const dict = {
     menu: 'menu',
     flatbreads: 'schiacciate',
     beverages: 'bevande',
-    sweet_snacks: 'snack dolci',
-    salad_snacks: 'snack salati',
+    cafetteria: 'caffetteria',
+    snacks: 'snacks',
     total: 'totale',
     order_copied: 'ordine copiato',
     empty_order:
